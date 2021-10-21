@@ -1,25 +1,32 @@
-import logo from './logo.svg';
+import React from 'react'
 import './App.css';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+
+class App extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = { text: '' } // You can also pass a Quill Delta here
+    this.handleChange = this.handleChange.bind(this)
+  }
+ 
+  handleChange(value) {
+    this.setState({ text: value })
+    console.log(this.state.text);
+  }
+ 
+  render() {
+    return (
+      <div className="content">
+
+      
+      <ReactQuill value={this.state.text} theme="snow"
+                  onChange={this.handleChange} />
+        </div>
+    )
+  }
 }
 
 export default App;
